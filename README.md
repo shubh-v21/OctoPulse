@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# OctoSurf
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**OctoSurf** is a GitHub profile analyzer that scores developers based on their open source contributions, repository quality, project presentation, technology diversity, collaboration, and profile completeness. This tool helps recruiters and hiring managers identify top developer talent quickly and accurately.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **Note:**  OctoSurf is currently under development and is not yet complete. Features, scoring algorithms, and the user interface may change.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- **Open Source Contributions:** Counts merged pull requests on external repositories.
+- **Top Repositories:** Evaluates top repos by stars and activity.
+- **Project Presentation:** Checks for live demos, documentation, and README presence.
+- **Technology Diversity:** Measures variety of programming languages used.
+- **Collaboration:** Tracks contributions across multiple repositories.
+- **Profile Completeness:** Assesses bio, blog, location, and recent activity.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Created by Shubh Verma – \[[shubhverma2003@gmail.com](mailto:your-email@example.com)]
 
-## Deploy on Vercel
+Project Link: [https://github.com/shubh-v21/octosurf](https://github.com/shubh-v21/octosurf)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
