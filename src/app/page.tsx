@@ -1,5 +1,6 @@
 "use client"
 
+import GitHubScoreCalculator from "@/components/GitHubScoreCalculator"
 import { useUser } from "@clerk/nextjs"
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -59,6 +60,7 @@ export default function Page() {
           </div>
         )}
       </div>
+      <GitHubScoreCalculator/>
     </div>
   )
 }
