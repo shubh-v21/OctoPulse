@@ -36,7 +36,8 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="bg-white shadow-md rounded-2xl p-8 max-w-md w-full space-y-6">
+      {/* Top 5 Repos */}
+      {/* <div className="bg-white shadow-md rounded-2xl p-8 max-w-md w-full space-y-6">
         <h1 className="text-2xl font-semibold text-gray-800">Hello, {user.firstName} 👋</h1>
 
         <input
@@ -59,7 +60,8 @@ export default function Page() {
             <pre className="bg-gray-100 p-4 rounded-xl overflow-auto max-h-64">{JSON.stringify(responseData, null, 2)}</pre>
           </div>
         )}
-      </div>
+      </div> */}
+      {/* GitHub Score Calculator */}
       <GitHubScoreCalculator/>
     </div>
   )
