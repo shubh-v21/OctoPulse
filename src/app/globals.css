@@ -119,3 +119,44 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom scrollbar for webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(17, 24, 39, 0.8); /* Dark background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #8b5cf6, #6366f1);
+  border-radius: 8px;
+  border: 2px solid rgba(17, 24, 39, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #9333ea, #7c3aed);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(31, 41, 55, 0.3);
+  border-radius: 8px;
+}
+
+/* For Firefox */
+* {
+  scrollbar-color: #8b5cf6 rgba(17, 24, 39, 0.8);
+  scrollbar-width: thin;
+}
+
+/* Style for any scrollable areas */
+.custom-scrollbar {
+  scrollbar-color: #8b5cf6 rgba(17, 24, 39, 0.8);
+  scrollbar-width: thin;
+  overflow-y: auto;
+}
+
+/* Make dialog content scrollable with custom scrollbar */
+.dialog-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
