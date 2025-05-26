@@ -2,7 +2,6 @@ import { type Metadata } from 'next'
 import {
   ClerkProvider,
   SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
   UserButton,
@@ -22,8 +21,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Octosurf',
-  description: "Analyze any GitHub developer's profile with OctoSurf — a GitHub Score Calculator that evaluates contributions, repositories, activity, and impact using the GitHub GraphQL API. Ideal for recruiters, developers, and tech teams.",
+  title: 'OctoPulse',
+  description: "Analyze any GitHub developer's profile with OctoPulse — a developer metrics platform that evaluates contributions, repositories, activity, and impact using the GitHub GraphQL API. Ideal for recruiters, developers, and tech teams.",
 }
 
 export default function RootLayout({
@@ -163,6 +162,46 @@ export default function RootLayout({
             backgroundColor: '#8b5cf6',
             color: '#ffffff',
           },
+          // Enhanced user button popover styling
+          userButtonPopoverCard: {
+            backgroundColor: '#111827',
+            border: '1px solid rgba(139, 92, 246, 0.3)',
+            borderRadius: '1rem',
+            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(139, 92, 246, 0.2)',
+            backdropFilter: 'blur(16px)',
+            padding: '0.5rem',
+          },
+          userButtonPopoverActionButton: {
+            borderRadius: '0.5rem',
+            margin: '0.25rem 0',
+            padding: '0.5rem 0.75rem',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: 'rgba(139, 92, 246, 0.15)',
+              transform: 'translateX(4px)',
+            },
+          },
+          userButtonPopoverActionButtonIcon: {
+            color: 'rgba(139, 92, 246, 0.8)',
+          },
+          userButtonPopoverActionButtonText: {
+            fontWeight: '500',
+          },
+          userButtonPopoverFooter: {
+            display: 'none',
+          },
+          userPreviewMainIdentifier: {
+            fontWeight: '600',
+            color: '#f9fafb',
+          },
+          userPreviewSecondaryIdentifier: {
+            color: 'rgba(139, 92, 246, 0.8)',
+          },
+          userButtonAvatarBox: {
+            width: '2rem',
+            height: '2rem',
+            borderRadius: '0.5rem',
+          },
         },
       }}
     >
@@ -177,11 +216,15 @@ export default function RootLayout({
           
           <header className="relative z-10 flex justify-between items-center p-6 h-20 backdrop-blur-xl bg-gray-900/30 border-b border-gray-800/50">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-sm">OS</span>
+              <div className="w-9 h-9 rounded-md overflow-hidden">
+                <img 
+                  src="/OctoPulse_Final.png" 
+                  alt="OctoPulse Logo" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                OctoSurf
+              <span className="text-xl tracking-widest uppercase font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent" style={{ letterSpacing: '0.15em' }}>
+                OCTOPULSE
               </span>
             </div>
             
@@ -197,11 +240,14 @@ export default function RootLayout({
                 <UserButton 
                   appearance={{
                     elements: {
-                      avatarBox: "w-8 h-8 ring-2 ring-purple-500/20",
-                      userButtonPopoverCard: "bg-gray-900 border-gray-700 shadow-2xl",
-                      userButtonPopoverActionButton: "hover:bg-gray-800 text-gray-300 hover:text-white",
-                      userButtonPopoverActionButtonText: "text-gray-300",
-                      userButtonPopoverFooter: "hidden",
+                      avatarBox: "w-8 h-8 ring-2 ring-purple-500/20 hover:ring-purple-500/50 transition-all duration-200",
+                      userButtonBox: "hover:scale-105 transition-transform duration-200",
+                      userButtonTrigger: "hover:opacity-90 focus:shadow-purple-500/20 focus:shadow-lg",
+                      userButtonPopoverCard: "bg-gray-900/95 border border-purple-500/30 shadow-xl backdrop-blur-xl",
+                      userButtonPopoverActionButton: "hover:bg-purple-500/10 hover:translate-x-1 transition-all duration-200 text-gray-300 hover:text-white my-1 rounded-md",
+                      userButtonPopoverActionButtonText: "text-gray-300 font-medium",
+                      userPreviewMainIdentifier: "text-white font-semibold",
+                      userPreviewSecondaryIdentifier: "text-purple-400",
                     }
                   }}
                 />
