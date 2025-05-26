@@ -20,6 +20,7 @@ import {
   Info,
   PieChart,
   ChevronRight,
+  Zap,
 } from "lucide-react";
 import {
   Dialog,
@@ -193,12 +194,21 @@ export default function GitHubScoreCalculator() {
       {!scoreData && !loading && (
         <div className="flex flex-col items-center justify-center py-16 space-y-8">
           <div className="text-center space-y-4 max-w-2xl">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              GitHub Score Calculator
+            <div className="flex justify-center mb-2">
+              <div className="w-20 h-20 overflow-hidden">
+                <img
+                  src="/OctoPulse_Final.png"
+                  alt="OctoPulse Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+            <h1 className="text-4xl font-bold tracking-wider uppercase bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              OCTOPULSE
             </h1>
             <p className="text-lg text-gray-400">
-              Enter a GitHub username to analyze their profile and generate a
-              detailed score report.
+              Enter a GitHub username to analyze their developer pulse and
+              generate a detailed metrics report.
             </p>
           </div>
 
@@ -299,11 +309,15 @@ export default function GitHubScoreCalculator() {
                       <div className="flex items-center space-x-4 mt-1">
                         <div className="flex items-center text-gray-400">
                           <Users className="w-4 h-4 mr-1" />
-                          <span>{scoreData.profileData.followers} followers</span>
+                          <span>
+                            {scoreData.profileData.followers} followers
+                          </span>
                         </div>
                         <div className="flex items-center text-gray-400">
                           <GitFork className="w-4 h-4 mr-1" />
-                          <span>{scoreData.profileData.following} following</span>
+                          <span>
+                            {scoreData.profileData.following} following
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -331,8 +345,9 @@ export default function GitHubScoreCalculator() {
                 {/* Score Circle */}
                 <div className="flex-1 flex flex-col items-center">
                   <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                    <Trophy className="w-5 h-5 mr-2 text-purple-400" />
-                    GitHub Developer Score
+                    <Zap className="w-5 h-5 mr-2 text-purple-400" />
+                    Developer Pulse
+                    <Zap className="w-5 h-5 ml-2 text-purple-400" />
                   </h3>
 
                   <CircleProgress
@@ -344,13 +359,13 @@ export default function GitHubScoreCalculator() {
                     <span className="text-4xl font-bold">
                       {scoreData.percentage}%
                     </span>
-                    <div
+                    {/* <div
                       className={`text-xl font-bold mt-2 ${getScoreColor(
                         scoreData.percentage
                       )}`}
                     >
                       {getScoreGrade(scoreData.percentage)}
-                    </div>
+                    </div> */}
                   </CircleProgress>
 
                   <div className="mt-4 grid grid-cols-3 gap-4 text-center w-full max-w-xs">
@@ -362,7 +377,7 @@ export default function GitHubScoreCalculator() {
                       <span className="text-xs text-gray-400">
                         80-100%
                         <br />
-                        Excellent
+                        High Pulse
                       </span>
                     </div>
                     <div>
@@ -373,7 +388,7 @@ export default function GitHubScoreCalculator() {
                       <span className="text-xs text-gray-400">
                         60-79%
                         <br />
-                        Good
+                        Steady Pulse
                       </span>
                     </div>
                     <div>
@@ -384,7 +399,7 @@ export default function GitHubScoreCalculator() {
                       <span className="text-xs text-gray-400">
                         0-59%
                         <br />
-                        Needs Work
+                        Low Pulse
                       </span>
                     </div>
                   </div>
@@ -398,7 +413,7 @@ export default function GitHubScoreCalculator() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <PieChart className="w-5 h-5 mr-2 text-purple-400" />
-                Category Breakdown
+                Pulse Metrics
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -408,10 +423,9 @@ export default function GitHubScoreCalculator() {
                     (category.score / category.maxScore) * 100
                   );
                   // Take only the first 2 details to show in the card
-                  const firstTwoDetails = Object.entries(category.details).slice(
-                    0,
-                    2
-                  );
+                  const firstTwoDetails = Object.entries(
+                    category.details
+                  ).slice(0, 2);
 
                   return (
                     <div
@@ -434,14 +448,18 @@ export default function GitHubScoreCalculator() {
                         </div>
                         <Badge
                           className="text-xs"
-                          style={{ backgroundColor: getScoreBgColor(percentage) }}
+                          style={{
+                            backgroundColor: getScoreBgColor(percentage),
+                          }}
                         >
                           {percentage}%
                         </Badge>
                       </div>
 
                       <div className="flex items-baseline mb-3">
-                        <span className="text-xl font-bold">{category.score}</span>
+                        <span className="text-xl font-bold">
+                          {category.score}
+                        </span>
                         <span className="text-gray-500 ml-1">
                           / {category.maxScore} points
                         </span>
@@ -449,7 +467,10 @@ export default function GitHubScoreCalculator() {
 
                       <div className="space-y-1.5 border-t border-gray-700/30 pt-3">
                         {firstTwoDetails.map(([key, value]) => (
-                          <div key={key} className="flex justify-between text-xs">
+                          <div
+                            key={key}
+                            className="flex justify-between text-xs"
+                          >
                             <span className="text-gray-400 capitalize">
                               {key.replace(/([A-Z])/g, " $1").trim()}:
                             </span>
@@ -478,101 +499,85 @@ export default function GitHubScoreCalculator() {
             open={selectedCategory !== null}
             onOpenChange={(open) => !open && setSelectedCategory(null)}
           >
-            <DialogContent className="w-[95vw] max-w-3xl bg-gray-900/95 border-gray-700 text-white backdrop-blur-xl dialog-content">
-              <DialogHeader className="pb-2">
-                <DialogTitle className="flex items-center space-x-3 text-xl">
+            <DialogContent className="w-[85vw] max-w-md bg-gray-900/95 border-gray-700 text-white backdrop-blur-xl p-4">
+              <DialogHeader className="pb-1 space-y-1">
+                <DialogTitle className="flex items-center space-x-2 text-base">
                   {selectedCategory && (
                     <>
-                      <div className="p-2 bg-gray-800 rounded-md">
+                      <div className="p-1 bg-gray-800 rounded-md">
                         {
                           categoryIcons[
                             selectedCategory.category as keyof typeof categoryIcons
                           ]
                         }
                       </div>
-                      <span>{selectedCategory?.category} Details</span>
+                      <span>{selectedCategory?.category}</span>
                     </>
                   )}
                 </DialogTitle>
-                <DialogDescription className="text-gray-400 text-sm">
-                  Detailed breakdown of score components
+                <DialogDescription className="text-gray-400 text-xs">
+                  Score: {selectedCategory?.score}/{selectedCategory?.maxScore}{" "}
+                  points
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="space-y-4 custom-scrollbar pr-2">
+              <div className="space-y-2 custom-scrollbar pr-1 max-h-[50vh] overflow-y-auto text-sm">
                 {selectedCategory && (
                   <>
-                    {/* Score Summary */}
-                    <div className="flex items-center justify-between bg-gray-800/50 p-4 rounded-lg">
-                      <div>
-                        <h4 className="text-lg font-semibold text-white">Score</h4>
-                        <div className="flex items-baseline space-x-2">
-                          <span className="text-3xl font-bold">
-                            {selectedCategory.score}
-                          </span>
-                          <span className="text-gray-400">
-                            / {selectedCategory.maxScore}
-                          </span>
-                        </div>
-                      </div>
-                      <div>
-                        {(() => {
-                          const percentage = Math.round(
-                            (selectedCategory.score /
-                              selectedCategory.maxScore) *
-                              100
-                          );
-                          return (
-                            <div className="text-center">
-                              <div
-                                className="text-2xl font-bold px-4 py-2 rounded-lg"
-                                style={{
-                                  backgroundColor: `${getScoreBgColor(
-                                    percentage
-                                  )}30`,
-                                }}
-                              >
-                                {percentage}%
-                              </div>
-                            </div>
-                          );
-                        })()}
-                      </div>
+                    {/* Score Bar */}
+                    <div className="mt-1 mb-3">
+                      {(() => {
+                        const percentage = Math.round(
+                          (selectedCategory.score / selectedCategory.maxScore) *
+                            100
+                        );
+                        return (
+                          <div className="w-full bg-gray-800/70 h-2 rounded overflow-hidden">
+                            <div
+                              className="h-full rounded"
+                              style={{
+                                width: `${percentage}%`,
+                                backgroundColor: getScoreBgColor(percentage),
+                              }}
+                            ></div>
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Details */}
-                    <div className="space-y-3">
-                      <h4 className="text-lg font-semibold text-white border-b border-gray-700 pb-2">
+                    <div>
+                      <h4 className="text-xs font-semibold text-white border-b border-gray-800 pb-1 mb-2">
                         Breakdown
                       </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div className="space-y-1.5">
                         {Object.entries(selectedCategory.details).map(
                           ([key, value]) => (
                             <div
                               key={key}
-                              className="bg-gray-800/30 p-3 rounded-lg"
+                              className="bg-gray-800/30 p-1.5 rounded"
                             >
-                              <div className="text-sm text-gray-400 capitalize mb-1">
+                              <div className="text-xs text-gray-400 capitalize">
                                 {key.replace(/([A-Z])/g, " $1").trim()}:
                               </div>
-                              <div className="font-medium text-gray-200 text-sm">
+                              <div className="font-medium text-gray-200 text-xs">
                                 {Array.isArray(value) ? (
-                                  <div className="flex flex-wrap gap-1">
-                                    {value.slice(0, 5).map((item, i) => (
+                                  <div className="flex flex-wrap gap-0.5 mt-1">
+                                    {value.slice(0, 2).map((item, i) => (
                                       <Badge
                                         key={i}
                                         variant="secondary"
-                                        className="text-xs bg-gray-700/50 text-gray-300"
+                                        className="text-[10px] py-0 px-1 h-4 bg-gray-700/50 text-gray-300"
                                       >
                                         {item}
                                       </Badge>
                                     ))}
-                                    {value.length > 5 && (
+                                    {value.length > 2 && (
                                       <Badge
                                         variant="outline"
-                                        className="text-xs"
+                                        className="text-[10px] py-0 px-1 h-4"
                                       >
-                                        +{value.length - 5} more
+                                        +{value.length - 2} more
                                       </Badge>
                                     )}
                                   </div>
@@ -586,37 +591,51 @@ export default function GitHubScoreCalculator() {
                       </div>
                     </div>
 
-                    {/* Tips */}
-                    <div className="bg-purple-900/20 p-3 rounded-lg border border-purple-500/20">
-                      <h4 className="text-sm font-semibold text-purple-400 flex items-center mb-2">
-                        <Info className="w-4 h-4 mr-2" />
-                        Tips to improve
-                      </h4>
-                      <p className="text-sm text-gray-300">
-                        {selectedCategory.category ===
-                          "Open Source Contributions" &&
-                          "Contribute to more open source projects and create meaningful pull requests to improve this score."}
-                        {selectedCategory.category === "Repository Quality" &&
-                          "Add detailed README files, documentation, and increase test coverage in your repositories."}
-                        {selectedCategory.category === "Project Presentation" &&
-                          "Add project descriptions, topics, and improve the visual presentation of your repos."}
-                        {selectedCategory.category === "Technical Diversity" &&
-                          "Work with a wider range of programming languages and technologies in your projects."}
-                        {selectedCategory.category === "Community Engagement" &&
-                          "Engage more with the community by starring repositories and following other developers."}
-                        {selectedCategory.category === "Profile Completeness" &&
-                          "Complete your profile with a bio, location, company information, and a profile picture."}
-                      </p>
-                    </div>
+                    {/* Tips - Only shown for low scores */}
+                    {(() => {
+                      const percentage = Math.round(
+                        (selectedCategory.score / selectedCategory.maxScore) *
+                          100
+                      );
+                      return percentage < 70 ? (
+                        <div className="bg-purple-900/20 p-1.5 rounded border border-purple-500/20 mt-2">
+                          <h4 className="text-[10px] font-semibold text-purple-400 flex items-center">
+                            <Info className="w-3 h-3 mr-1" />
+                            How to improve
+                          </h4>
+                          <p className="text-[10px] text-gray-300 mt-0.5">
+                            {selectedCategory.category ===
+                              "Open Source Contributions" &&
+                              "Contribute to more open source projects and create meaningful pull requests."}
+                            {selectedCategory.category ===
+                              "Repository Quality" &&
+                              "Add detailed README files, documentation, and increase test coverage."}
+                            {selectedCategory.category ===
+                              "Project Presentation" &&
+                              "Add project descriptions, topics, and improve your repos' visual presentation."}
+                            {selectedCategory.category ===
+                              "Technical Diversity" &&
+                              "Work with a wider range of programming languages and technologies."}
+                            {selectedCategory.category ===
+                              "Community Engagement" &&
+                              "Engage more with the community by starring repositories and following developers."}
+                            {selectedCategory.category ===
+                              "Profile Completeness" &&
+                              "Complete your profile with bio, location, and profile picture."}
+                          </p>
+                        </div>
+                      ) : null;
+                    })()}
                   </>
                 )}
               </div>
 
-              <div className="flex justify-end pt-2">
+              <div className="flex justify-end mt-1">
                 <DialogClose asChild>
                   <Button
                     variant="outline"
-                    className="border-gray-700 hover:bg-gray-800 text-gray-300"
+                    size="sm"
+                    className="h-7 text-xs border-gray-700 hover:bg-gray-800 text-gray-300"
                   >
                     Close
                   </Button>
