@@ -197,14 +197,14 @@ export default function GitHubScoreCalculator() {
             <div className="flex justify-center mb-2">
               <div className="w-20 h-20 overflow-hidden">
                 <img
-                  src="/OctoPulse_Final.png"
-                  alt="OctoPulse Logo"
+                  src="/OctoSpark_Final.png"
+                  alt="OctoSpark Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
             </div>
             <h1 className="text-4xl font-bold tracking-wider uppercase bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              OCTOPULSE
+              OCTOSPARK
             </h1>
             <p className="text-lg text-gray-400">
               Enter a GitHub username to analyze their developer pulse and

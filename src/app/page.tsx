@@ -30,14 +30,14 @@ export default function Page() {
           <div className="flex justify-center">
             <div className="w-28 h-28 rounded-full shadow-xl overflow-hidden bg-gray-900/50 p-1">
               <img 
-                src="/OctoPulse_Final.png" 
-                alt="OctoPulse Logo" 
+                src="/OctoSpark_Final.png" 
+                alt="OctoSpark Logo" 
                 className="w-full h-full object-contain"
               />
             </div>
           </div>
           <h1 className="text-4xl font-bold tracking-wider uppercase bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-            OCTOPULSE
+            OCTOSPARK
           </h1>
           <p className="text-gray-400 text-lg leading-relaxed">
             Monitor the pulse of GitHub developers with our advanced metrics platform.

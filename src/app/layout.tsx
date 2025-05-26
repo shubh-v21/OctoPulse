@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'OctoPulse',
-  description: "Analyze any GitHub developer's profile with OctoPulse — a developer metrics platform that evaluates contributions, repositories, activity, and impact using the GitHub GraphQL API. Ideal for recruiters, developers, and tech teams.",
+  title: 'OctoSpark',
+  description: "Analyze any GitHub developer's profile with OctoSpark — a developer metrics platform that evaluates contributions, repositories, activity, and impact using the GitHub GraphQL API. Ideal for recruiters, developers, and tech teams.",
 }
 
 export default function RootLayout({
@@ -218,13 +218,13 @@ export default function RootLayout({
             <div className="flex items-center space-x-3">
               <div className="w-9 h-9 rounded-md overflow-hidden">
                 <img 
-                  src="/OctoPulse_Final.png" 
-                  alt="OctoPulse Logo" 
+                  src="/OctoSpark_Final.png" 
+                  alt="OctoSpark Logo" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <span className="text-xl tracking-widest uppercase font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent" style={{ letterSpacing: '0.15em' }}>
-                OCTOPULSE
+                OCTOSPARK
               </span>
             </div>
             
