@@ -1,68 +1,74 @@
 "use client"
 
 import GitHubScoreCalculator from "@/components/GitHubScoreCalculator"
-import { useUser } from "@clerk/nextjs"
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useUser, SignInButton } from "@clerk/nextjs"
+import { Loader2, Github, Zap, Activity } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
 export default function Page() {
   const { isSignedIn, user, isLoaded } = useUser()
-  const [targetUsername, setTargetUsername] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [responseData, setResponseData] = useState<any>(null)
-
-  const fetchUserData = async () => {
-    setLoading(true)
-    try {
-      const response = await axios.get(`/api/get-user-data?targetUsername=${targetUsername}`)
-      if (response.status === 200) {
-        console.log("User data:", response.data)
-        setResponseData(response.data)
-      }
-    } catch (err) {
-      console.error("Error fetching user data:", err)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   if (!isLoaded) {
-    return <div className="flex items-center justify-center h-screen text-xl">Loading...</div>
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-12 h-12 animate-spin text-purple-500 mx-auto" />
+          <p className="text-xl text-gray-300">Loading...</p>
+        </div>
+      </div>
+    )
   }
 
   if (!isSignedIn) {
-    return <div className="flex items-center justify-center h-screen text-xl">Sign in to view this page</div>
+    return (
+      <div className="flex items-center justify-center min-h-screen p-6">
+        <Card className="max-w-lg mx-auto bg-gray-900/50 backdrop-blur-xl border-gray-700/50 shadow-2xl">
+          <CardContent className="text-center space-y-8 p-12">
+            <div className="space-y-4">
+              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-3xl mx-auto flex items-center justify-center shadow-2xl">
+                <Activity className="w-10 h-10 text-white" />
+              </div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                Welcome to OctoSurf
+              </h1>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                Analyze GitHub profiles and discover developer insights with our comprehensive scoring system.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex items-center justify-center space-x-6 text-sm text-gray-400">
+                <div className="flex items-center space-x-2">
+                  <Github className="w-4 h-4 text-purple-400" />
+                  <span>GitHub API</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Zap className="w-4 h-4 text-blue-400" />
+                  <span>Real-time Analysis</span>
+                </div>
+              </div>
+              
+              <SignInButton mode="modal">
+                <Button className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25">
+                  <Github className="w-5 h-5 mr-2" />
+                  Sign In with GitHub
+                </Button>
+              </SignInButton>
+              
+              <p className="text-xs text-gray-500">
+                Sign in to start analyzing GitHub profiles and get detailed developer insights.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      {/* Top 5 Repos */}
-      {/* <div className="bg-white shadow-md rounded-2xl p-8 max-w-md w-full space-y-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Hello, {user.firstName} 👋</h1>
-
-        <input
-          type="text"
-          placeholder="Enter GitHub username"
-          className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={(e) => setTargetUsername(e.target.value)}
-        />
-
-        <button
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition duration-200 disabled:opacity-50"
-          onClick={fetchUserData}
-          disabled={loading || !targetUsername}
-        >
-          {loading ? "Fetching..." : "Fetch Stats"}
-        </button>
-
-        {responseData && (
-          <div className="text-sm text-gray-700">
-            <pre className="bg-gray-100 p-4 rounded-xl overflow-auto max-h-64">{JSON.stringify(responseData, null, 2)}</pre>
-          </div>
-        )}
-      </div> */}
-      {/* GitHub Score Calculator */}
-      <GitHubScoreCalculator/>
+    <div className="min-h-screen bg-transparent">
+      <GitHubScoreCalculator />
     </div>
   )
 }
