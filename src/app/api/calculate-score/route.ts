@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    console.log("GraphQL Response:", JSON.stringify(response.data, null, 2));
+    // console.log("GraphQL Response:", JSON.stringify(response.data, null, 2));
 
     const data = response.data as { data?: any; errors?: any };
 
@@ -315,7 +315,7 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     20,
     Math.min(5, (projectReposWithDescription / Math.max(repos.length, 1)) * 5) +
       Math.min(5, (projectReposWithReadme / Math.max(repos.length, 1)) * 5) +
-      Math.min(10, (projectReposWithLiveLink / Math.max(repos.length, 1)) * 5)
+      Math.min(10, (projectReposWithLiveLink / Math.max(repos.length, 1)) * 10)
   );
 
   scores.push({
@@ -335,7 +335,7 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     if (repo.primaryLanguage) languages.add(repo.primaryLanguage.name);
   });
 
-  const diversityScore = Math.min(10, languages.size * 2);
+  const diversityScore = Math.min(10, languages.size * 2.5);
 
   scores.push({
     category: "Technical Diversity",
