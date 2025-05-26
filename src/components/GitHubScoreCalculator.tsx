@@ -207,7 +207,7 @@ export default function GitHubScoreCalculator() {
               OCTOSPARK
             </h1>
             <p className="text-lg text-gray-400">
-              Enter a GitHub username to analyze their developer pulse and
+              Enter a GitHub username to analyze their developer spark and
               generate a detailed metrics report.
             </p>
           </div>
@@ -346,7 +346,7 @@ export default function GitHubScoreCalculator() {
                 <div className="flex-1 flex flex-col items-center">
                   <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                     <Zap className="w-5 h-5 mr-2 text-purple-400" />
-                    Developer Pulse
+                    Developer Spark
                     <Zap className="w-5 h-5 ml-2 text-purple-400" />
                   </h3>
 
@@ -377,7 +377,7 @@ export default function GitHubScoreCalculator() {
                       <span className="text-xs text-gray-400">
                         80-100%
                         <br />
-                        High Pulse
+                        High Spark
                       </span>
                     </div>
                     <div>
@@ -388,7 +388,7 @@ export default function GitHubScoreCalculator() {
                       <span className="text-xs text-gray-400">
                         60-79%
                         <br />
-                        Steady Pulse
+                        Steady Spark
                       </span>
                     </div>
                     <div>
@@ -399,7 +399,7 @@ export default function GitHubScoreCalculator() {
                       <span className="text-xs text-gray-400">
                         0-59%
                         <br />
-                        Low Pulse
+                        Low Spark
                       </span>
                     </div>
                   </div>
@@ -413,7 +413,7 @@ export default function GitHubScoreCalculator() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <PieChart className="w-5 h-5 mr-2 text-purple-400" />
-                Pulse Metrics
+                Spark Metrics
               </CardTitle>
             </CardHeader>
             <CardContent>

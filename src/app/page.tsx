@@ -40,7 +40,7 @@ export default function Page() {
             OCTOSPARK
           </h1>
           <p className="text-gray-400 text-lg leading-relaxed">
-            Monitor the pulse of GitHub developers with our advanced metrics platform.
+            Monitor the spark of GitHub developers with our advanced metrics platform.
           </p>
         </div>
         
@@ -80,7 +80,7 @@ export default function Page() {
             icon={<Github className="w-6 h-6 text-purple-400" />}
           />
           <FeatureCard 
-            title="Developer Pulse" 
+            title="Developer Spark" 
             description="Monitor the heartbeat of coding activity with our proprietary scoring system." 
             icon={<Zap className="w-6 h-6 text-purple-400" />}
           />
