@@ -226,6 +226,7 @@ export default function GitHubScoreCalculator() {
   };
 
   const handleSignIn = async () => {
+    setLoading(true);
     if (username.trim()) {
       // Save username to session storage and localStorage as backup
       sessionStorage.setItem("pendingUsername", username.trim());
@@ -267,6 +268,25 @@ export default function GitHubScoreCalculator() {
             showSignInHint={!session}
             disabled={loading}
           />
+          {/* Error State */}
+          {error && (
+            <Card className="max-w-md mx-auto bg-gray-900/50 backdrop-blur-xl border-red-800/20">
+              <CardContent >
+                <div className="flex items-center py-2 space-x-3 text-red-400">
+                  <div className="w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-sm">!</span>
+                  </div>
+                  <p>{error}</p>
+                </div>
+                <Button
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-white"
+                  onClick={() => setError("")}
+                >
+                  Try Again
+                </Button>
+              </CardContent>
+            </Card>
+          )}
           <FeatureSection />
         </>
       )}
@@ -282,26 +302,6 @@ export default function GitHubScoreCalculator() {
             Analyzing @{username}'s profile...
           </p>
         </div>
-      )}
-
-      {/* Error State */}
-      {error && (
-        <Card className="max-w-md mx-auto bg-gray-900/50 backdrop-blur-xl border-red-800/20">
-          <CardContent className="pt-6">
-            <div className="flex items-center space-x-3 text-red-400">
-              <div className="w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center">
-                <span className="text-sm">!</span>
-              </div>
-              <p>{error}</p>
-            </div>
-            <Button
-              className="w-full mt-4 bg-gray-800 hover:bg-gray-700 text-white"
-              onClick={() => setError("")}
-            >
-              Try Again
-            </Button>
-          </CardContent>
-        </Card>
       )}
 
       {/* Results Dashboard */}
@@ -509,8 +509,7 @@ export default function GitHubScoreCalculator() {
                             className="flex justify-between text-xs"
                           >
                             <span className="text-gray-400 capitalize">
-                              {key}
-                              :
+                              {key}:
                             </span>
                             <span className="font-medium text-gray-200">
                               {Array.isArray(value)
