@@ -1,4 +1,8 @@
-import { Github, Zap } from "lucide-react";
+import {
+  ChartBar,
+  Github,
+  Zap,
+} from "lucide-react";
 import React from "react";
 
 function FeatureCard({
@@ -25,7 +29,7 @@ const FeatureSection = () => {
       <FeatureCard
         title="Real-time Analysis"
         description="Get instant insights into any GitHub developer's activity and contributions."
-        icon={<Zap className="w-6 h-6 text-purple-400" />}
+        icon={<ChartBar className="w-6 h-6 text-purple-400" />}
       />
       <FeatureCard
         title="Comprehensive Metrics"
