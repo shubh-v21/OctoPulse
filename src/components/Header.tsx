@@ -39,13 +39,15 @@ export default function Header() {
             src="/OctoSpark_Final.png"
             alt="OctoSpark Logo"
             fill
-            className="object-cover"
+            className="object-cover cursor-pointer"
+            onClick={() => (window.location.href = "/")}
             priority
           />
         </div>
         <span
-          className="text-xl tracking-widest uppercase font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
+          className="text-xl cursor-pointer tracking-widest uppercase font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
           style={{ letterSpacing: "0.15em" }}
+          onClick={() => (window.location.href = "/")}
         >
           OCTOSPARK
         </span>
