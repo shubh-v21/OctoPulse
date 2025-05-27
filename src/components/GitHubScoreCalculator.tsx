@@ -31,6 +31,7 @@ import UsernameInput from "@/components/UsernameInput";
 import FeatureSection from "./FeatureSection";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import ScoreCalculationInfo from "./ScoreCalculationInfo";
 
 interface ScoreData {
   username: string;
@@ -310,7 +311,7 @@ export default function GitHubScoreCalculator() {
           <div className="flex justify-end">
             <Button
               variant="outline"
-              className="border-gray-700 text-gray-300 hover:bg-gray-800"
+              className="border-gray-700 bg-purple-400/5 text-gray-300 hover:bg-purple-400/30"
               onClick={() => {
                 setScoreData(null);
                 setUsername("");
@@ -528,6 +529,9 @@ export default function GitHubScoreCalculator() {
               </div>
             </CardContent>
           </Card>
+
+                <ScoreCalculationInfo />
+
 
           {/* Category Details Dialog */}
           <Dialog
