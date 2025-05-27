@@ -45,7 +45,7 @@ export default function Header() {
           />
         </div>
         <span
-          className="text-xl cursor-pointer tracking-widest uppercase font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
+          className="hidden sm:block text-xl cursor-pointer tracking-widest uppercase font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
           style={{ letterSpacing: "0.15em" }}
           onClick={() => (window.location.href = "/")}
         >
