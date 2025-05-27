@@ -6,7 +6,7 @@ import { Loader2, Github, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import { useRouter, useSearchParams } from "next/navigation";
-import OctoSparkLanding from "@/components/OctoSparkLanding";
+import UsernameInput from "@/components/UsernameInput";
 
 export default function Page() {
   const { data: session, status } = useSession();

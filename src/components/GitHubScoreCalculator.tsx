@@ -27,7 +27,7 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/components/ui/dialog";
-import OctoSparkLanding from "@/components/OctoSparkLanding";
+import UsernameInput from "@/components/UsernameInput";
 import FeatureSection from "./FeatureSection";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -259,7 +259,7 @@ export default function GitHubScoreCalculator() {
       {/* Search Section */}
       {!scoreData && !loading && (
         <>
-          <OctoSparkLanding
+          <UsernameInput
             username={username}
             onUsernameChange={setUsername}
             onSearch={handleSearch}

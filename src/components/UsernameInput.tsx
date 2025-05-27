@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Github, Zap } from "lucide-react"
 import Image from "next/image"
 
-interface OctoSparkLandingProps {
+interface UsernameInputProps {
   username: string
   onUsernameChange: (username: string) => void
   onSearch: () => void
@@ -15,14 +15,14 @@ interface OctoSparkLandingProps {
   placeholder?: string
 }
 
-export default function OctoSparkLanding({
+export default function UsernameInput({
   username,
   onUsernameChange,
   onSearch,
   showSignInHint = false,
   disabled = false,
   placeholder = "Enter GitHub username"
-}: OctoSparkLandingProps) {
+}: UsernameInputProps) {
   return (
     <div className="flex flex-col items-center justify-center py-16 space-y-8">
       <div className="text-center space-y-4 max-w-2xl">
@@ -40,7 +40,7 @@ export default function OctoSparkLanding({
         <h1 className="text-4xl font-bold tracking-wider uppercase bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
           OCTOSPARK
         </h1>
-        <p className="text-lg text-gray-400">
+        <p className="text-md text-gray-400">
           Enter a GitHub username to analyze their developer journey, measure contribution metrics, and uncover insights that reflect their real impact on open source.
           
         </p>
