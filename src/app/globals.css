@@ -160,3 +160,13 @@
   max-height: 80vh;
   overflow-y: auto;
 }
+
+* {
+  @apply select-none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  @apply select-text;
+}
