@@ -1,7 +1,8 @@
 "use client";
 
-import { Github, Twitter, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail, Heart, Coffee } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,11 +13,12 @@ export default function Footer() {
         <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-center">
           <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 text-xs sm:text-sm text-gray-400">
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 sm:w-5 sm:h-5">
-                <img
+              <div className="w-4 h-4 sm:w-5 sm:h-5 relative">
+                <Image
                   src="/OctoSpark_Final.png"
                   alt="OctoSpark Logo"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
                 />
               </div>
               <span className="text-center sm:text-left">
@@ -30,38 +32,46 @@ export default function Footer() {
             </div>
           </div>
           <div className="flex items-center justify-center space-x-3 sm:space-x-4">
-            <a
-              href="https://github.com"
+            <Link
+              href="https://github.com/shubh-v21"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Github className="w-4 h-4 sm:w-4 sm:h-4" />
-            </a>
-            <a
-              href="https://twitter.com"
+            </Link>
+            <Link
+              href="https://x.com/shubhonx"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Twitter className="w-4 h-4 sm:w-4 sm:h-4" />
-            </a>
-            <a
-              href="https://linkedin.com"
+            </Link>
+            <Link
+              href="https://linkedin.com/in/shubh-v21"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Linkedin className="w-4 h-4 sm:w-4 sm:h-4" />
-            </a>
-            <a
+            </Link>
+            <Link
               href="mailto:shubhverma2003@gmail.com"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Mail className="w-4 h-4 sm:w-4 sm:h-4" />
-            </a>
+            </Link>
+            <Link
+              href="https://buymeacoffee.com/shubhdevs"
+              className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Coffee className="w-4 h-4 sm:w-4 sm:h-4" />
+            </Link>
           </div>
         </div>
       </div>
