@@ -210,11 +210,11 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: Math.round(contributionScore),
     maxScore: 25,
     details: {
-      externalPRsMerged: externalPRs.length,
-      uniqueReposContributed: uniqueRepos.size,
-      totalPRContributions:
+      "External PRs merged": externalPRs.length,
+      "Unique repos contributed": uniqueRepos.size,
+      "Total PR contributions":
         userData.contributionsCollection.totalPullRequestContributions,
-      totalCommitContributionsLastYear:
+      "Total commit contributions last year":
         userData.contributionsCollection.contributionCalendar
           .totalContributions,
     },
@@ -252,10 +252,10 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: Math.round(repoScore),
     maxScore: 20,
     details: {
-      totalRepositoriesOwned: repos.length,
-      totalStars,
-      totalForks,
-      recentlyActiveRepos: recentRepos.length,
+      "Total repositories owned": repos.length,
+      "Total stars": totalStars,
+      "Total forks": totalForks,
+      "Recently active repos": recentRepos.length,
     },
   });
 
@@ -284,9 +284,9 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: Math.round(presentationScore),
     maxScore: 20,
     details: {
-      projectReposWithDescription,
-      projectReposWithLiveLink,
-      projectReposWithReadme,
+      "Project repos with description": projectReposWithDescription,
+      "Project repos with live link": projectReposWithLiveLink,
+      "Project repos with readme": projectReposWithReadme,
     },
   });
 
@@ -303,8 +303,8 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: Math.round(diversityScore),
     maxScore: 10,
     details: {
-      programmingLanguages: Array.from(languages),
-      languageCount: languages.size,
+      "Programming languages": Array.from(languages),
+      "Language count": languages.size,
     },
   });
 
@@ -324,11 +324,11 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: Math.round(engagementScore),
     maxScore: 15,
     details: {
-      followers: userData.followers.totalCount,
-      following: userData.following.totalCount,
-      issueContributions:
+      "Followers": userData.followers.totalCount,
+      "Following": userData.following.totalCount,
+      "Issue contributions":
         userData.contributionsCollection.totalIssueContributions,
-      gists: userData.gists.totalCount,
+      "Gists": userData.gists.totalCount,
     },
   });
 
@@ -345,11 +345,11 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: profileScore,
     maxScore: 10,
     details: {
-      hasName: userData.name !== null && userData.name.length > 0 ? "Yes" : "No",
-      hasBio: userData.bio ? "Yes" : "No",
-      hasLocation:  userData.location ? "Yes" : "No",
-      hasWebsite: userData.websiteUrl ? "Yes" : "No",
-      hasReadme:
+      "Has name": userData.name !== null && userData.name.length > 0 ? "Yes" : "No",
+      "Has bio": userData.bio ? "Yes" : "No",
+      "Has location":  userData.location ? "Yes" : "No",
+      "Has website": userData.websiteUrl ? "Yes" : "No",
+      "Has readme":
         userData?.repository?.readme?.__typename === "Blob" ? "Yes" : "No",
     },
   });

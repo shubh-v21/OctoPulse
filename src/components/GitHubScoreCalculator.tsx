@@ -339,10 +339,11 @@ export default function GitHubScoreCalculator() {
                         {scoreData.profileData.name || scoreData.username}
                       </h2>
                       <div className="flex items-center space-x-3 text-gray-400 hover:text-purple-400">
-                        <Link 
-                        href={`https://github.com/${scoreData.username}`}
-                        target="_blank"
-                        rel="noopener noreferrer">
+                        <Link
+                          href={`https://github.com/${scoreData.username}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <span>@{scoreData.username}</span>
                         </Link>
                       </div>
@@ -508,7 +509,8 @@ export default function GitHubScoreCalculator() {
                             className="flex justify-between text-xs"
                           >
                             <span className="text-gray-400 capitalize">
-                              {key.replace(/([A-Z])/g, " $1").trim()}:
+                              {key}
+                              :
                             </span>
                             <span className="font-medium text-gray-200">
                               {Array.isArray(value)
@@ -530,8 +532,7 @@ export default function GitHubScoreCalculator() {
             </CardContent>
           </Card>
 
-                <ScoreCalculationInfo />
-
+          <ScoreCalculationInfo />
 
           {/* Category Details Dialog */}
           <Dialog
@@ -597,7 +598,7 @@ export default function GitHubScoreCalculator() {
                               className="bg-gray-800/30 p-1.5 rounded"
                             >
                               <div className="text-xs text-gray-400 capitalize">
-                                {key.replace(/([A-Z])/g, " $1").trim()}:
+                                {key}:
                               </div>
                               <div className="font-medium text-gray-200 text-xs">
                                 {Array.isArray(value) ? (
@@ -651,13 +652,13 @@ export default function GitHubScoreCalculator() {
                               "Add detailed README files, documentation, and increase test coverage."}
                             {selectedCategory.category ===
                               "Project Presentation" &&
-                              "Add project descriptions, topics, and improve your repos' visual presentation."}
+                              "Add project descriptions, live links, topics, and improve your repos' visual presentation."}
                             {selectedCategory.category ===
                               "Technical Diversity" &&
                               "Work with a wider range of programming languages and technologies."}
                             {selectedCategory.category ===
                               "Community Engagement" &&
-                              "Engage more with the community by starring repositories and following developers."}
+                              "Help the community by reporting issues, sharing useful gists, and building your follower base through active participation."}
                             {selectedCategory.category ===
                               "Profile Completeness" &&
                               "Complete your profile with bio, location, and profile picture."}
