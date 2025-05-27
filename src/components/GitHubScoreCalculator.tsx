@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -15,8 +14,6 @@ import {
   Code,
   Globe,
   Trophy,
-  Search,
-  ArrowRight,
   Info,
   PieChart,
   ChevronRight,
@@ -30,6 +27,9 @@ import {
   DialogDescription,
   DialogClose,
 } from "@/components/ui/dialog";
+import OctoSparkLanding from "@/components/OctoSparkLanding";
+import FeatureSection from "./FeatureSection";
+import { signIn, useSession } from "next-auth/react";
 
 interface ScoreData {
   username: string;
@@ -61,26 +61,10 @@ const categoryIcons = {
   "Profile Completeness": <Trophy className="w-5 h-5" />,
 };
 
-const getScoreColor = (percentage: number) => {
-  if (percentage >= 80) return "text-emerald-400";
-  if (percentage >= 60) return "text-yellow-400";
-  return "text-red-400";
-};
-
 const getScoreBgColor = (percentage: number) => {
   if (percentage >= 80) return "#10b981";
   if (percentage >= 60) return "#f59e0b";
   return "#ef4444";
-};
-
-const getScoreGrade = (percentage: number) => {
-  if (percentage >= 90) return "A+";
-  if (percentage >= 80) return "A";
-  if (percentage >= 70) return "B+";
-  if (percentage >= 60) return "B";
-  if (percentage >= 50) return "C+";
-  if (percentage >= 40) return "C";
-  return "D";
 };
 
 // Circle Progress component
@@ -152,6 +136,8 @@ const CircleProgress = ({
 };
 
 export default function GitHubScoreCalculator() {
+  const { data: session, status } = useSession();
+
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [scoreData, setScoreData] = useState<ScoreData | null>(null);
@@ -163,8 +149,56 @@ export default function GitHubScoreCalculator() {
     details: Record<string, any>;
   } | null>(null);
 
+  // Listen for auto-analyze events from parent component
+  useEffect(() => {
+    const handleAutoAnalyze = (event: CustomEvent) => {
+      const { username: autoUsername } = event.detail;
+      if (autoUsername) {
+        console.log("Auto-analyzing username:", autoUsername);
+        setUsername(autoUsername);
+        // Small delay to ensure state is set
+        setTimeout(() => {
+          calculateScoreForUsername(autoUsername);
+        }, 50);
+      }
+    };
+
+    window.addEventListener("autoAnalyze", handleAutoAnalyze as EventListener);
+
+    // Also check localStorage on component mount as additional fallback
+    const checkStoredUsername = () => {
+      const stored =
+        localStorage.getItem("pendingUsername") ||
+        sessionStorage.getItem("pendingUsername");
+      if (stored) {
+        console.log("Found stored username:", stored);
+        localStorage.removeItem("pendingUsername");
+        sessionStorage.removeItem("pendingUsername");
+        setUsername(stored);
+        setTimeout(() => {
+          calculateScoreForUsername(stored);
+        }, 100);
+      }
+    };
+
+    
+    // Check for stored username after a short delay
+    setTimeout(checkStoredUsername, 200);
+
+    return () => {
+      window.removeEventListener(
+        "autoAnalyze",
+        handleAutoAnalyze as EventListener
+      );
+    };
+  }, []);
+
   const calculateScore = async () => {
-    if (!username.trim()) return;
+    await calculateScoreForUsername(username.trim());
+  };
+
+  const calculateScoreForUsername = async (targetUsername: string) => {
+    if (!targetUsername.trim()) return;
 
     setLoading(true);
     setError("");
@@ -172,7 +206,9 @@ export default function GitHubScoreCalculator() {
 
     try {
       const response = await fetch(
-        `/api/calculate-score?targetUsername=${encodeURIComponent(username)}`
+        `/api/calculate-score?targetUsername=${encodeURIComponent(
+          targetUsername
+        )}`
       );
       const result = await response.json();
 
@@ -188,52 +224,50 @@ export default function GitHubScoreCalculator() {
     }
   };
 
+  const handleSignIn = async () => {
+    if (username.trim()) {
+      // Save username to session storage and localStorage as backup
+      sessionStorage.setItem("pendingUsername", username.trim());
+      localStorage.setItem("pendingUsername", username.trim());
+
+      // Include username in callback URL and redirect directly
+      const callbackUrl = `${
+        window.location.origin
+      }?username=${encodeURIComponent(username.trim())}`;
+      await signIn("github", { callbackUrl });
+    } else {
+      // Regular sign-in without username
+      await signIn("github", { callbackUrl: window.location.origin });
+    }
+  };
+
+  const handleSearch = () => {
+    if (!session) {
+      // If not signed in, redirect to sign-in with username
+      handleSignIn();
+      return;
+    }
+    if (session && username.trim()) {
+      calculateScoreForUsername(username.trim());
+    } else {
+      setError("Please enter a valid GitHub username");
+    }
+  };
+
   return (
     <div className="max-w-[1400px] mx-auto p-4 md:p-6 space-y-6 pb-16">
       {/* Search Section */}
       {!scoreData && !loading && (
-        <div className="flex flex-col items-center justify-center py-16 space-y-8">
-          <div className="text-center space-y-4 max-w-2xl">
-            <div className="flex justify-center mb-2">
-              <div className="w-20 h-20 overflow-hidden">
-                <img
-                  src="/OctoSpark_Final.png"
-                  alt="OctoSpark Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </div>
-            <h1 className="text-4xl font-bold tracking-wider uppercase bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              OCTOSPARK
-            </h1>
-            <p className="text-lg text-gray-400">
-              Enter a GitHub username to analyze their developer spark and
-              generate a detailed metrics report.
-            </p>
-          </div>
-
-          <Card className="w-full max-w-md bg-gray-900/50 backdrop-blur-xl border-gray-700/50">
-            <CardContent className="pt-6">
-              <div className="flex space-x-2">
-                <Input
-                  type="text"
-                  placeholder="Enter GitHub username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && calculateScore()}
-                  className="h-12 bg-gray-800/50 border-gray-600 text-white"
-                />
-                <Button
-                  onClick={calculateScore}
-                  disabled={loading || !username.trim()}
-                  className="h-12 px-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
-                >
-                  <Search className="w-5 h-5" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        <>
+          <OctoSparkLanding
+            username={username}
+            onUsernameChange={setUsername}
+            onSearch={handleSearch}
+            showSignInHint={!session}
+            disabled={loading}
+          />
+          <FeatureSection />
+        </>
       )}
 
       {/* Loading State */}
@@ -306,20 +340,6 @@ export default function GitHubScoreCalculator() {
                       <div className="flex items-center space-x-3 text-gray-400">
                         <span>@{scoreData.username}</span>
                       </div>
-                      <div className="flex items-center space-x-4 mt-1">
-                        <div className="flex items-center text-gray-400">
-                          <Users className="w-4 h-4 mr-1" />
-                          <span>
-                            {scoreData.profileData.followers} followers
-                          </span>
-                        </div>
-                        <div className="flex items-center text-gray-400">
-                          <GitFork className="w-4 h-4 mr-1" />
-                          <span>
-                            {scoreData.profileData.following} following
-                          </span>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
@@ -337,6 +357,16 @@ export default function GitHubScoreCalculator() {
                       <span>{scoreData.profileData.location}</span>
                     </div>
                   )}
+                  <div className="flex items-center space-x-4 mt-1">
+                    <div className="flex items-center text-gray-400">
+                      <Users className="w-4 h-4 mr-1" />
+                      <span>{scoreData.profileData.followers} followers</span>
+                    </div>
+                    <div className="flex items-center text-gray-400">
+                      <GitFork className="w-4 h-4 mr-1" />
+                      <span>{scoreData.profileData.following} following</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Vertical Divider for Desktop */}
