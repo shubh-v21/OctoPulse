@@ -30,6 +30,7 @@ import {
 import OctoSparkLanding from "@/components/OctoSparkLanding";
 import FeatureSection from "./FeatureSection";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 
 interface ScoreData {
   username: string;
@@ -181,7 +182,6 @@ export default function GitHubScoreCalculator() {
       }
     };
 
-    
     // Check for stored username after a short delay
     setTimeout(checkStoredUsername, 200);
 
@@ -337,8 +337,13 @@ export default function GitHubScoreCalculator() {
                       <h2 className="text-2xl font-bold text-white">
                         {scoreData.profileData.name || scoreData.username}
                       </h2>
-                      <div className="flex items-center space-x-3 text-gray-400">
-                        <span>@{scoreData.username}</span>
+                      <div className="flex items-center space-x-3 text-gray-400 hover:text-purple-400">
+                        <Link 
+                        href={`https://github.com/${scoreData.username}`}
+                        target="_blank"
+                        rel="noopener noreferrer">
+                          <span>@{scoreData.username}</span>
+                        </Link>
                       </div>
                     </div>
                   </div>
