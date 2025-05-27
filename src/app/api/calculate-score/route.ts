@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth, clerkClient } from "@clerk/nextjs/server";
 import axios from "axios";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 
 interface GitHubScore {
   category: string;
@@ -10,12 +11,12 @@ interface GitHubScore {
 }
 
 export async function GET(request: NextRequest) {
-  const { userId } = await auth();
+  const session = await getServerSession(authOptions);
   const GITHUB_GRAPHQL_API = "https://api.github.com/graphql";
 
-  if (!userId) {
+  if (!session || !session.accessToken) {
     return NextResponse.json(
-      { success: false, message: "Unauthorized" },
+      { success: false, message: "Unauthorized - Please sign in with GitHub" },
       { status: 401 }
     );
   }
@@ -30,19 +31,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const client = await clerkClient();
-  const clerkResponse = await client.users.getUserOauthAccessToken(
-    userId,
-    "github"
-  );
-  const githubToken = clerkResponse.data[0].token || "";
-
-  if (!githubToken) {
-    return NextResponse.json(
-      { success: false, message: "No GitHub token found" },
-      { status: 401 }
-    );
-  }
+  const githubToken = session.accessToken;
 
   try {
     // Simplified GitHub data query for limited scopes
@@ -187,34 +176,6 @@ export async function GET(request: NextRequest) {
       { success: false, message: "Error calculating GitHub score" },
       { status: 500 }
     );
-  }
-}
-
-async function getUserNodeId(token: string, username: string): Promise<string> {
-  const query = `query($login: String!) { user(login: $login) { id } }`;
-  try {
-    const response = await axios.post(
-      "https://api.github.com/graphql",
-      { query, variables: { login: username } },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-
-    const data = response.data as {
-      data?: { user?: { id?: string } };
-      errors?: any;
-    };
-    if (data.errors) {
-      throw new Error(`GraphQL errors: ${JSON.stringify(data.errors)}`);
-    }
-
-    if (!data.data?.user?.id) {
-      throw new Error("User not found or invalid response");
-    }
-
-    return data.data.user.id;
-  } catch (error) {
-    console.error("Error getting user node ID:", error);
-    throw error;
   }
 }
 
@@ -384,10 +345,10 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
     score: profileScore,
     maxScore: 10,
     details: {
-      hasName: !!userData.name,
-      hasBio: !!userData.bio,
-      hasLocation: !!userData.location,
-      hasWebsite: !!userData.websiteUrl,
+      hasName: userData.name !== null && userData.name.length > 0 ? "Yes" : "No",
+      hasBio: userData.bio ? "Yes" : "No",
+      hasLocation:  userData.location ? "Yes" : "No",
+      hasWebsite: userData.websiteUrl ? "Yes" : "No",
       hasReadme:
         userData?.repository?.readme?.__typename === "Blob" ? "Yes" : "No",
     },
