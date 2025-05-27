@@ -24,7 +24,7 @@ export default function UsernameInput({
   placeholder = "Enter GitHub username"
 }: UsernameInputProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 space-y-8">
+    <div className="flex flex-col items-center justify-center py-8 space-y-8">
       <div className="text-center space-y-4 max-w-2xl">
         <div className="flex justify-center mb-2">
           <div className="w-20 h-20 overflow-hidden relative">
@@ -37,8 +37,8 @@ export default function UsernameInput({
             />
           </div>
         </div>
-        <h1 className="text-4xl font-bold tracking-wider uppercase bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-          OCTOSPARK
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+          Reveal the Spark
         </h1>
         <p className="text-md text-gray-400">
           Enter a GitHub username to analyze their developer journey, measure contribution metrics, and uncover insights that reflect their real impact on open source.
