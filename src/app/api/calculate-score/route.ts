@@ -206,7 +206,7 @@ function calculateGitHubScores(userData: any): GitHubScore[] {
   );
 
   scores.push({
-    category: "Open Source Contributions",
+    category: "Overall Contributions",
     score: Math.round(contributionScore),
     maxScore: 25,
     details: {
