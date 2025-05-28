@@ -55,7 +55,7 @@ interface ScoreData {
 }
 
 const categoryIcons = {
-  "Open Source Contributions": <Github className="w-5 h-5" />,
+  "Overall Contributions": <Github className="w-5 h-5" />,
   "Repository Quality": <Star className="w-5 h-5" />,
   "Project Presentation": <Globe className="w-5 h-5" />,
   "Technical Diversity": <Code className="w-5 h-5" />,
