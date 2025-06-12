@@ -33,7 +33,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center justify-center space-x-3 sm:space-x-4">
             <Link
-              href="https://github.com/shubh-v21"
+              href="https://github.com/zenoshubh"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
@@ -41,7 +41,7 @@ export default function Footer() {
               <Github className="w-4 h-4 sm:w-4 sm:h-4" />
             </Link>
             <Link
-              href="https://x.com/shubhonx"
+              href="https://x.com/zenoshubh"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
@@ -49,7 +49,7 @@ export default function Footer() {
               <Twitter className="w-4 h-4 sm:w-4 sm:h-4" />
             </Link>
             <Link
-              href="https://linkedin.com/in/shubh-v21"
+              href="https://linkedin.com/in/zenoshubh"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
@@ -57,7 +57,7 @@ export default function Footer() {
               <Linkedin className="w-4 h-4 sm:w-4 sm:h-4" />
             </Link>
             <Link
-              href="mailto:shubhverma2003@gmail.com"
+              href="mailto:zenoshubh@gmail.com"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"
@@ -65,7 +65,7 @@ export default function Footer() {
               <Mail className="w-4 h-4 sm:w-4 sm:h-4" />
             </Link>
             <Link
-              href="https://buymeacoffee.com/shubhdevs"
+              href="https://buymeacoffee.com/zenoshubh"
               className="w-9 h-9 sm:w-8 sm:h-8 bg-gray-800/50 hover:bg-gray-700/50 rounded-md flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200 active:scale-95"
               target="_blank"
               rel="noopener noreferrer"

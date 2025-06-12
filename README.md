@@ -10,7 +10,7 @@
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
   [![NextAuth.js](https://img.shields.io/badge/NextAuth.js-4-purple?style=flat-square&logo=next.js)](https://next-auth.js.org/)
   
-  [Live Demo](https://octospark.vercel.app) • [Report Bug](https://github.com/shubh-v21/octospark/issues) • [Request Feature](https://github.com/shubh-v21/octospark/issues)
+  [Live Demo](https://octospark.vercel.app) • [Report Bug](https://github.com/zenoshubh/octospark/issues) • [Request Feature](https://github.com/zenoshubh/octospark/issues)
 </div>
 
 ---
@@ -98,7 +98,7 @@ OctoSpark evaluates developers across **6 key dimensions**:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/shubh-v21/octospark.git
+git clone https://github.com/zenoshubh/octospark.git
 cd octospark
 ```
 
@@ -203,10 +203,10 @@ We welcome contributions! Here's how you can help:
 ## 👤 Author
 
 **Shubh Verma**
-- GitHub: [@shubh-v21](https://github.com/shubh-v21)
-- Twitter: [@shubhonx](https://twitter.com/shubhonx)
-- LinkedIn: [shubh-v21](https://linkedin.com/in/shubh-v21)
-- Email: [shubhverma2003@gmail.com](mailto:shubhverma2003@gmail.com)
+- GitHub: [@zenoshubh](https://github.com/zenoshubh)
+- Twitter: [@zenoshubh](https://twitter.com/zenoshubh)
+- LinkedIn: [zenoshubh](https://linkedin.com/in/zenoshubh)
+- Email: [zenoshubh@gmail.com](mailto:zenoshubh@gmail.com)
 
 ## 🙏 Acknowledgments
 
@@ -222,7 +222,7 @@ If you found this project helpful, consider:
 - ⭐ Starring the repository
 - 🐛 Reporting bugs
 - 💡 Suggesting new features
-- ☕ [Buying me a coffee](https://buymeacoffee.com/shubhdevs)
+- ☕ [Buying me a coffee](https://buymeacoffee.com/zenoshubh)
 
 ---
 
